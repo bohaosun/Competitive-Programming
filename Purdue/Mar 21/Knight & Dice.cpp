@@ -1,0 +1,70 @@
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+#include <cctype>
+#include <cstdlib>
+#include <cstring>
+#include <cassert>
+#include <ctime>
+#include <algorithm>
+#include <string>
+#include <bitset>
+#include <vector>
+#include <set>
+#include <map>
+#include <queue>
+#include <stack>
+#include <sstream>
+#include <unordered_map>
+#include <unordered_set>
+#include <iomanip>
+#include <random>
+
+#define _1 first
+#define _2 second
+#define pb push_back
+#define mp make_pair
+#define sqr(x) ((x) * (x))
+#define all(x) (x).begin(), (x).end()
+#define uni(x) (x).erase(unique(all(x)), (x).end());
+#define reset(x, y) memset(x, y, sizeof(x))
+#define BUG(x) cerr << #x << " = " << (x) << endl
+#define BUGP(x) cout << #x << " = " << (x)._1 << ", " << (x)._2 << endl
+using namespace std;
+
+typedef long long LL;
+typedef pair<int, int> pii;
+typedef pair<LL, LL> pll;
+
+const int dx[] = {-2, -2, -1, -1, 1, 1, 2, 2};
+const int dy[] = {-1, 1, -2, 2, -2, 2, -1, 1};
+// Head
+
+int n, x, y, tot;
+
+void dfs(int x, int y, int t) {
+    if (t == n) {
+        ++tot;
+        return;
+    }
+
+    for (int i = 0; i < 8; i++) {
+        int x2 = x + dx[i], y2 = y + dy[i];
+        if (x2 < 0 || y2 < 0 || x2 >= 8 || y2 >= 8) continue;
+        dfs(x2, y2, t + 1);
+    }
+}
+
+int main() {
+    cin >> n >> x >> y;
+    dfs(x, y, 0);
+
+    int base = 1;
+    for (int i = 0; i < n; i++) base *= 8;
+
+    cout << fixed;
+    cout.precision(4);
+
+    cout << double(tot) / base << '\n';
+    return 0;
+}
