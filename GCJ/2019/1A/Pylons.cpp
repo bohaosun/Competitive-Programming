@@ -199,6 +199,7 @@ int main() {
                 continue;
             }
         }
+        
         cout << "POSSIBLE\n";
 
         for (int i = 1; i + 3 <= m; i++) { ans2.pb({ 1, i }); ans2.pb({ 2, i + 3 }); }
